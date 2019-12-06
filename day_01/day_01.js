@@ -1,6 +1,7 @@
 const fs = require('fs');
+const readline = require("readline");
 
-//PART ONE
+//PART ONE (1)
 const masses = fs.readFileSync('input.txt','utf8').split('\n');
 
 const calcFuel = (modules) => {
@@ -16,6 +17,19 @@ const calcFuel = (modules) => {
 
 console.log("calcFuel: " + calcFuel(masses));
 
+//PART ONE (2)
+
+let output = 0;
+
+const rl = readline.createInterface({
+  input: fs.createReadStream("input.txt")
+});
+
+rl.on("line", mass => {
+  console.log("Mass from file: ", mass);
+  output += Math.floor(mass / 3) - 2;
+  console.log("New Fuel: " + output);
+});
 
 //PART TWO
 const calcTotalFuel = (modules) => {
